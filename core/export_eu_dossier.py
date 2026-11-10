@@ -57,14 +57,89 @@ def convert(d):
         if q["state"] == "VERIFICATO" and not valid_date(q.get("verified_at")):
             raise ValueError("Requisito VERIFICATO senza data")
         requisiti.append({"id":q["id"],"testo":q["text"],"fonte":q["source_id"],"sezione":q.get("section"),"stato":q["state"],"note":q.get("note")})
-    if d.get("project") or d.get("financials"):
-        raise ValueError("Project/financials non mappati: esportazione bloccata per evitare perdita silenziosa")
+    # Allineamento esplicito dei campi progettuali comuni allo schema EU.
+    project_fields = {
+        "context": "contesto", "problems": "problemi", "general_goals": "obiettivi_generali",
+        "specific_goals": "obiettivi_specifici", "activities": "attivita",
+        "outputs": "output", "outcomes": "outcome", "impacts": "impatti",
+        "indicators": "indicatori", "risks": "rischi",
+    }
+    indicator_fields = {
+        "unit": "unita_misura", "baseline": "baseline", "target": "target",
+        "period": "periodo", "measurement_method": "metodo_rilevazione",
+    }
+    project = d.get("project")
+    mapped_project = None
+    if project is not None:
+        if not isinstance(project, dict) or set(project) - set(project_fields):
+            raise ValueError("project contiene campi non mappabili")
+        mapped_project = {}
+        for key, items in project.items():
+            if not isinstance(items, list):
+                raise ValueError("project." + key + " non è una lista")
+            mapped_items = []
+            for item in items:
+                if not isinstance(item, dict) or not item.get("text") or item.get("state") not in STATES:
+                    raise ValueError("Voce progetto priva di testo o stato valido")
+                allowed = {"text", "state", "source_id", "verified_at", "approved_at", "approved_by"}
+                if key == "indicators":
+                    allowed |= set(indicator_fields)
+                if set(item) - allowed:
+                    raise ValueError("Voce progetto contiene campi non mappabili")
+                src = item.get("source_id")
+                if src is not None and src not in ids:
+                    raise ValueError("Voce progetto con fonte inesistente")
+                if item["state"] == "VERIFICATO" and (not src or not valid_date(item.get("verified_at"))):
+                    raise ValueError("Voce VERIFICATO senza fonte/data")
+                if item["state"] == "DECISIONE_APPROVATA" and not valid_date(item.get("approved_at")):
+                    raise ValueError("Decisione approvata senza data")
+                mapped = {"testo":item["text"],"stato":item["state"],"fonte":src}
+                if item.get("verified_at") is not None:
+                    if not valid_date(item["verified_at"]):
+                        raise ValueError("Data di verifica non ISO")
+                    mapped["verificato_il"] = item["verified_at"]
+                if item.get("approved_at") is not None:
+                    if not valid_date(item["approved_at"]):
+                        raise ValueError("Data di approvazione non ISO")
+                    mapped["approvato_il"] = item["approved_at"]
+                if item.get("approved_by") is not None:
+                    mapped["approvato_da"] = item["approved_by"]
+                if key == "indicators":
+                    for english, italian in indicator_fields.items():
+                        if english in item:
+                            mapped[italian] = item[english]
+                mapped_items.append(mapped)
+            mapped_project[project_fields[key]] = mapped_items
+    finance_fields = {
+        "currency": "valuta", "project_costs": "costi_progetto",
+        "grant_requested": "contributo_richiesto", "rate": "tasso",
+        "cofinancing": "cofinanziamento", "rule_source_id": "fonte_regole",
+        "state": "stato",
+    }
+    finance = d.get("financials")
+    mapped_finance = None
+    if finance is not None:
+        if not isinstance(finance, dict) or set(finance) - set(finance_fields):
+            raise ValueError("financials contiene campi non mappabili")
+        if finance and (not finance.get("currency") or finance.get("state") not in STATES):
+            raise ValueError("financials richiede currency e state validi")
+        if finance.get("rule_source_id") is not None and finance["rule_source_id"] not in ids:
+            raise ValueError("financials con fonte di regole inesistente")
+        for field in ("project_costs", "grant_requested"):
+            value = finance.get(field)
+            if value is not None and (isinstance(value, bool) or not isinstance(value,(int,float)) or value < 0):
+                raise ValueError("Importo non valido: " + field)
+        mapped_finance = {finance_fields[k]:v for k,v in finance.items()}
     result={
         "schema":EU_TAG,"dossier_id":d["dossier_id"],"created":d["created"],"updated":d["updated"],
         "opportunita":{"programma":o["eu_programme"],"ciclo_QFP":o["qfp_cycle"],"titolo":o["title"],"autorita":o.get("authority",""),"modalita_gestione":o["eu_management_mode"],"avviso_id":o["id"],"call_id":None,"topic_id":None,"ultima_verifica":o["last_checked"]},
         "evidenze":evidenze,"requisiti":requisiti,
         "revisioni":[{"data":d["updated"],"descrizione":"Esportazione manuale da Business Funding: nessuna verifica automatica di veridicità", "motivo":"altro"}],
     }
+    if mapped_project is not None:
+        result["progetto"] = mapped_project
+    if mapped_finance is not None:
+        result["finanza"] = mapped_finance
     return result
 
 def main():

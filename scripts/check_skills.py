@@ -15,6 +15,17 @@ EXPECTED = (
     "business-venture-capital",
     "business-startup-incubation",
     "business-internationalization",
+    "business-project-designer",
+    "business-application-planner",
+    "business-application-drafter",
+    "business-application-reviewer",
+    "business-submission-checker",
+    "business-post-submission-tracker",
+    "business-award-contract-manager",
+    "business-execution-reporting",
+    "business-closure-obligations",
+    "business-investment-readiness",
+    "business-investment-due-diligence",
 )
 errors = []
 for name in EXPECTED:

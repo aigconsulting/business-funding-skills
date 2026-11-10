@@ -10,7 +10,7 @@ Il dossier è un **file JSON locale opzionale**, non una base dati condivisa o u
 | `opportunity` | ID, titolo, ultimo controllo, autorità, territorio e, dove applicabile, programma UE |
 | `sources` | Fonti con ID `SRC-*`, URL, data, versione e stato |
 | `requirements` | Requisiti con ID `REQ-*`, stato e riferimento a una fonte |
-| `project`, `financials` | Dati opzionali: conservati nel dossier originale; **non ancora esportabili** al formato EU |
+| `project`, `financials` | Dati opzionali: i campi comuni sono convertibili esplicitamente nel formato EU; campi non mappabili bloccano l'esportazione |
 
 Gli stati ammessi sono `VERIFICATO`, `DA_CONFERMARE`, `IPOTESI`, `PROPOSTA`, `DECISIONE_APPROVATA`, `MANCANTE`, `NON_APPLICABILE`. Non convertire informazioni non confermate in fatti, né rinominare approvazioni fittizie.
 

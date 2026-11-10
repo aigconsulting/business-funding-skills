@@ -57,7 +57,7 @@ Questo controllo verifica soltanto struttura e metadati delle skill. **Non** att
 
 ## Interoperabilità
 
-Per una call UE a gestione diretta o per la redazione di una proposta europea, utilizzare le skill di [eu-funding-skills](https://github.com/aigconsulting/eu-funding-skills). Il dossier Business dispone di uno [schema JSON v1](core/dossier.schema.json), di un [convertitore unidirezionale verso il dossier EU](core/export_eu_dossier.py), di [test unitari](core/test_export_eu_dossier.py) e di [limiti e istruzioni](core/INTEROPERABILITY.md). L'esportazione è **solo per GRANT UE documentati**, blocca altri strumenti e non sincronizza i file o gli stati fra repository.
+Per una call UE a gestione diretta o per la redazione di una proposta europea, utilizzare le skill di [eu-funding-skills](https://github.com/aigconsulting/eu-funding-skills). Il dossier Business dispone di uno [schema JSON v1](core/dossier.schema.json), di un [convertitore unidirezionale verso il dossier EU](core/export_eu_dossier.py), di [test unitari](core/test_export_eu_dossier.py) e di [limiti e istruzioni](core/INTEROPERABILITY.md). L'esportazione è **solo per GRANT UE documentati**, blocca altri strumenti e trasferisce i campi comuni di progetto e finanza quando rappresentabili, ma non sincronizza i file o gli stati fra repository.
 
 ## Fonti di partenza
 

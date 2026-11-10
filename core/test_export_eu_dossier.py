@@ -28,6 +28,25 @@ class BridgeTest(unittest.TestCase):
     def test_source_dangling_refused(self):
         d=fixture();d["requirements"][0]["source_id"]="SRC-NOT-THERE"
         with self.assertRaises(ValueError): convert(d)
+    def test_project_and_financials_mapping(self):
+        d=fixture()
+        d["project"]={"specific_goals":[{"text":"Obiettivo dimostrativo","state":"PROPOSTA"}],
+                      "indicators":[{"text":"Indicatore demo","state":"DA_CONFERMARE","unit":"unità","target":"10"}]}
+        d["financials"]={"currency":"EUR","project_costs":100000,
+                         "grant_requested":60000,"rule_source_id":"SRC-1","state":"IPOTESI"}
+        out=convert(d)
+        self.assertEqual(out["progetto"]["obiettivi_specifici"][0]["stato"],"PROPOSTA")
+        self.assertEqual(out["progetto"]["indicatori"][0]["unita_misura"],"unità")
+        self.assertEqual(out["finanza"]["contributo_richiesto"],60000)
+        self.assertEqual(out["finanza"]["stato"],"IPOTESI")
+    def test_verified_project_requires_evidence(self):
+        d=fixture()
+        d["project"]={"specific_goals":[{"text":"Test","state":"VERIFICATO"}]}
+        with self.assertRaises(ValueError): convert(d)
+    def test_no_silent_financial_drop(self):
+        d=fixture()
+        d["financials"]={"currency":"EUR","state":"IPOTESI","unmapped":"value"}
+        with self.assertRaises(ValueError): convert(d)
     def test_no_silent_project_drop(self):
         d=fixture();d["project"]={"goals":["x"]}
         with self.assertRaises(ValueError): convert(d)

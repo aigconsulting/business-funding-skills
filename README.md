@@ -2,33 +2,51 @@
 
 Skill indipendenti per individuare e valutare **agevolazioni e strumenti di sostegno alle imprese** in Italia e in Europa. Progetto complementare a [EU Funding Skills](https://github.com/aigconsulting/eu-funding-skills): non replica la gerarchia UE, la progettazione Horizon o le verifiche delle call.
 
-## Catalogo
+![Business Funding Skills — dall'opportunità al finanziamento, dalla progettazione alla chiusura](assets/business-funding-hero.svg)
 
-| Skill | Scopo |
-| --- | --- |
-| [business-funding-classifier](business-funding-classifier/SKILL.md) | Distingue contributi, debito, equity, incubazione e internazionalizzazione; identifica forme ibride |
-| [business-funding-opportunity-finder](business-funding-opportunity-finder/SKILL.md) | Ricerca opportunità concrete, ente competente, fonti ufficiali e stato |
-| [business-funding-eligibility-checker](business-funding-eligibility-checker/SKILL.md) | Verifica preliminare per beneficiario, progetto, spese e modalità |
-| [business-funding-financial-comparator](business-funding-financial-comparator/SKILL.md) | Confronta flussi, cofinanziamento, debito e diluizione su ipotesi dichiarate |
-| [business-grants](business-grants/SKILL.md) | Specializzazione per contributi a fondo perduto |
-| [business-soft-loans](business-soft-loans/SKILL.md) | Specializzazione per prestiti agevolati e garanzie |
-| [business-venture-capital](business-venture-capital/SKILL.md) | Specializzazione per investimenti equity |
-| [business-startup-incubation](business-startup-incubation/SKILL.md) | Specializzazione per incubazione e accelerazione |
-| [business-internationalization](business-internationalization/SKILL.md) | Specializzazione per export ed espansione estera |
+## Skill disponibili
 
-| [business-project-designer](business-project-designer/SKILL.md) | Progetta interventi, risultati, KPI, attività e budget |
-| [business-application-planner](business-application-planner/SKILL.md) | Pianifica candidature, documenti, requisiti e tempi |
-| [business-application-drafter](business-application-drafter/SKILL.md) | Redige bozze coerenti con formulari e documenti ufficiali |
-| [business-application-reviewer](business-application-reviewer/SKILL.md) | Revisiona requisiti, qualità ed evidenze |
-| [business-submission-checker](business-submission-checker/SKILL.md) | Esegue controlli documentali pre-invio |
-| [business-post-submission-tracker](business-post-submission-tracker/SKILL.md) | Ricostruisce eventi post-candidatura e richieste |
-| [business-award-contract-manager](business-award-contract-manager/SKILL.md) | Analizza atti di concessione, prestiti e accordi |
-| [business-execution-reporting](business-execution-reporting/SKILL.md) | Monitora attività, milestone, spese e rendicontazione |
-| [business-closure-obligations](business-closure-obligations/SKILL.md) | Verifica chiusura e obblighi successivi |
-| [business-investment-readiness](business-investment-readiness/SKILL.md) | Prepara pitch, metriche, cap table e data room |
-| [business-investment-due-diligence](business-investment-due-diligence/SKILL.md) | Struttura due diligence documentale preliminare |
+![Diagramma del ciclo Business Funding Skills: 13 skill di processo distribuite in cinque macrofasi e sette skill specialistiche](assets/business-funding-lifecycle.svg)
 
-Ogni skill contiene un file `SKILL.md` autonomamente caricabile da client compatibili Agent Skills. Le skill specialistiche usano quelle comuni senza richiederne l'installazione per fornire un'analisi circoscritta.
+[Apri il diagramma vettoriale SVG](assets/business-funding-lifecycle.svg)
+
+| Macrofase | Passaggi | Risultato documentale |
+| --- | --- | --- |
+| **1. Orientamento e opportunità** | Classificazione → ricerca → ammissibilità → confronto economico | Individuazione degli strumenti pertinenti e analisi preliminare |
+| **2. Progettazione** | Disegno dell'intervento → pianificazione | Progetto e piano di candidatura documentati |
+| **3. Candidatura** | Redazione → revisione → pre-check | Bozza e controlli documentali prima dell'invio |
+| **4. Istruttoria e accordi** | Tracciamento → concessioni e contratti | Evidenze degli esiti e condizioni della formalizzazione |
+| **5. Attuazione e chiusura** | Esecuzione/rendicontazione → chiusura | Evidenze di avanzamento, saldo e obblighi residui |
+
+Le fasi costituiscono un percorso **analitico e documentale**, non un processo eseguito automaticamente. Le sette skill specialistiche intervengono nelle fasi pertinenti allo strumento considerato.
+
+### 13 skill di processo
+
+1. [`business-funding-classifier`](business-funding-classifier/SKILL.md) — Classificazione degli strumenti: grant, prestiti, garanzie, equity, servizi e misure ibride.
+2. [`business-funding-opportunity-finder`](business-funding-opportunity-finder/SKILL.md) — Ricerca di opportunità e verifica dello stato sulle fonti ufficiali.
+3. [`business-funding-eligibility-checker`](business-funding-eligibility-checker/SKILL.md) — Verifica preliminare di beneficiari, progetti, spese e condizioni.
+4. [`business-funding-financial-comparator`](business-funding-financial-comparator/SKILL.md) — Confronto economico di cofinanziamento, flussi, debito e diluizione.
+5. [`business-project-designer`](business-project-designer/SKILL.md) — Progettazione dell'intervento: contesto, obiettivi, attività, indicatori e budget.
+6. [`business-application-planner`](business-application-planner/SKILL.md) — Pianificazione della candidatura, dei documenti e delle scadenze.
+7. [`business-application-drafter`](business-application-drafter/SKILL.md) — Redazione delle bozze secondo i formulari specifici della misura.
+8. [`business-application-reviewer`](business-application-reviewer/SKILL.md) — Revisione critica dei contenuti e della documentazione.
+9. [`business-submission-checker`](business-submission-checker/SKILL.md) — Controlli documentali pre-invio.
+10. [`business-post-submission-tracker`](business-post-submission-tracker/SKILL.md) — Tracciamento dell'istruttoria e delle comunicazioni ricevute.
+11. [`business-award-contract-manager`](business-award-contract-manager/SKILL.md) — Analisi degli atti di concessione, prestito e investimento.
+12. [`business-execution-reporting`](business-execution-reporting/SKILL.md) — Esecuzione, milestone, spese e rendicontazione documentale.
+13. [`business-closure-obligations`](business-closure-obligations/SKILL.md) — Chiusura dell'intervento e verifica degli obblighi successivi.
+
+### 7 skill specialistiche
+
+- [`business-grants`](business-grants/SKILL.md) — Contributi a fondo perduto, voucher e sovvenzioni.
+- [`business-soft-loans`](business-soft-loans/SKILL.md) — Finanziamenti agevolati, interessi e garanzie.
+- [`business-venture-capital`](business-venture-capital/SKILL.md) — Ricerca fondi e verifica preliminare di opportunità equity.
+- [`business-startup-incubation`](business-startup-incubation/SKILL.md) — Programmi di incubazione e accelerazione.
+- [`business-internationalization`](business-internationalization/SKILL.md) — Incentivi e servizi per export e crescita internazionale.
+- [`business-investment-readiness`](business-investment-readiness/SKILL.md) — Preparazione agli investitori, metriche, pitch e cap table.
+- [`business-investment-due-diligence`](business-investment-due-diligence/SKILL.md) — Due diligence documentale preliminare dell'investimento.
+
+Ogni skill dispone del proprio `SKILL.md` ed è utilizzabile autonomamente dai client compatibili con Agent Skills. La numerazione 01–13 riflette il diagramma, non rinomina le directory.
 
 ## Principi vincolanti
 
@@ -40,7 +58,7 @@ Ogni skill contiene un file `SKILL.md` autonomamente caricabile da client compat
 
 ## Esecuzione indicativa
 
-**Classificazione → Ricerca → Ammissibilità → Progettazione → Pianificazione → Redazione → Review → Pre-invio → Tracciamento post-invio → Concessione/accordo → Esecuzione e rendicontazione → Chiusura**. Per il venture capital si aggiungono investment readiness e due diligence, con percorso contrattuale distinto. Si possono usare skill singole.
+**Orientamento → Analisi → Progettazione → Candidatura → Istruttoria/contrattualizzazione → Attuazione e rendicontazione → Chiusura.** Venture capital, incubazione, prestiti e altre forme di sostegno seguono condizioni e percorsi distinti; investment readiness e due diligence intervengono dove pertinenti. Si possono usare skill singole.
 
 ## Installazione
 

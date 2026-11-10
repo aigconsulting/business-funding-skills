@@ -50,13 +50,14 @@ Copiare ciascuna directory `business-*/` in `~/.claude/skills/`, `~/.config/open
 
 ```bash
 python3 scripts/check_skills.py
+python3 core/test_export_eu_dossier.py
 ```
 
 Questo controllo verifica soltanto struttura e metadati delle skill. **Non** attesta conformità giuridica, correttezza delle fonti correnti né qualità delle valutazioni prodotte dal modello.
 
 ## Interoperabilità
 
-Per una call UE a gestione diretta o per la redazione di una proposta europea, utilizzare le skill di [eu-funding-skills](https://github.com/aigconsulting/eu-funding-skills). Il dossier è interoperabile sul piano concettuale tramite [mappatura dei dati](core/dossier.md); non è implementata una sincronizzazione automatica.
+Per una call UE a gestione diretta o per la redazione di una proposta europea, utilizzare le skill di [eu-funding-skills](https://github.com/aigconsulting/eu-funding-skills). Il dossier Business dispone di uno [schema JSON v1](core/dossier.schema.json), di un [convertitore unidirezionale verso il dossier EU](core/export_eu_dossier.py), di [test unitari](core/test_export_eu_dossier.py) e di [limiti e istruzioni](core/INTEROPERABILITY.md). L'esportazione è **solo per GRANT UE documentati**, blocca altri strumenti e non sincronizza i file o gli stati fra repository.
 
 ## Fonti di partenza
 
